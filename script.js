@@ -125,6 +125,7 @@ force.on("tick", () => {
   nodes
       .attr("cx", d => (d.x))
       .attr("cy", d => (d.y))
+
 });
 
 
@@ -132,7 +133,7 @@ force.on("tick", () => {
 nodes.append("title")
     .text(d=>d.name);
     
-    d3.selectAll("input[name=type]").on("change", event=>{
+    d3.selectAll("input[name=display]").on("change", event=>{
       visType = event.target.value;// selected button
       console.log("SWITHC")
       switchLayout();
@@ -144,16 +145,18 @@ nodes.append("title")
         // stop the simulation
         force.stop()
         // set the positions of links and nodes based on geo-coordinates
-        let nodes = data[0].nodes
-        let link = data[0].links
-        svg.selectAll('pathh')
+        //let nodes = data[0].nodes
+        //let links = data[0].links
+        
+        
+        svg.selectAll('path')
         .attr('opacity', 1)
 
-          node.attr("cx", function(d) {
+          nodes.attr("cx", function(d) {
             return projection([d.longitude, d.latitude])[0];
-     
-
           })
+          drag.filter(event => visType === "force")
+
       } else { // force layout
 
         force.alpha(0.5).restart();
@@ -162,6 +165,7 @@ nodes.append("title")
               .attr("opacity", 0);
           // set the map opacity to 0
       }
+      
     }
     
 

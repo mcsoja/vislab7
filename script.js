@@ -1,6 +1,4 @@
 
-// fetch('airports.json')
-//   .then(response => response.json())
 Promise.all([ // load multiple files
 	d3.json('airports.json'),
 	d3.json('world-110m.json')
@@ -165,34 +163,6 @@ let circleScale =
         .attr("cy", function(d) {
           return projection([d.longitude, d.latitude])[1];
         })
-      //   .on("mouseenter", (event, d) => {
-      //     const pos = d3.pointer(event, window)
-      //     d3.selectAll('.tooltip')
-      //         .style('display','inline-block')
-      //         .style('position','fixed')
-      //         .style('top', pos[1]+'px')
-      //         .style('left', pos[0]+'px')
-      //         .html(
-      //             d.name 
-      //         )
-      // })
-      // .on("mouseleave", (event, d) => {
-      //     d3.selectAll('.tooltip')
-      //         .style('display','none')
-      //     //console.log("HERE")
-      // });
-
-        
-
-      // nodesForce = svg.selectAll('.chart')
-      //   .data(data[0].nodes)
-      //   .enter()
-      //   .append('circle')
-      //   .attr('class', 'force')
-      //   .attr('cx', (d,i)=>(d.x))
-      //   .attr('cy', (d,i)=>(d.y))
-      //   .attr('fill', 'orange') 
-      //   .attr('r',d=>circleScale(d.passengers))
 
         svg.selectAll("path")
               .attr("opacity", 0);
@@ -201,34 +171,6 @@ let circleScale =
         svg.selectAll('.force').remove()
 
         force.alpha(0.5).stop();
-        //let links = data[0].links
-        
-
-   
-
-
-        // nodesMap = svg.selectAll('.chart')
-        // .transition()
-        // .duration(1000)
-        // .attr("transform", function(d){
-        //   return "translate(" + projection([d.longitude, d.latitude]) + ")";
-        // })
-      //   .on("mouseenter", (event, d) => {
-      //     const pos = d3.pointer(event, window)
-      //     d3.selectAll('.tooltip')
-      //         .style('display','inline-block')
-      //         .style('position','fixed')
-      //         .style('top', pos[1]+'px')
-      //         .style('left', pos[0]+'px')
-      //         .html(
-      //             d.name 
-      //         )
-      // })
-      // .on("mouseleave", (event, d) => {
-      //     d3.selectAll('.tooltip')
-      //         .style('display','none')
-      //     //console.log("HERE")
-      // });
         
         force.on("tick", () => {
           linksMap
@@ -254,7 +196,6 @@ let circleScale =
         
         });
 
-        //nodesMap.append("title").text(d=>d.name);
         
         
         svg.selectAll('path')
@@ -262,18 +203,7 @@ let circleScale =
               .delay(500)
         .attr('opacity', 1)
 
-          // nodes.attr("cx", function(d) {
-          //   return projection([d.longitude, d.latitude])[0];
-          // })
-
       } else { // force layout
-        //move Force nodes and links
-
-        
-
-
-
-
 
         svg.selectAll('.map').remove()
 

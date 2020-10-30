@@ -4,6 +4,7 @@
         <script src="https://d3js.org/d3.v6.min.js"></script>
         <script defer src="script.js"></script>
         <script src="https://unpkg.com/topojson@3"></script>
+        <link rel="stylesheet" href="style.css">
         
         <!-- Google Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -17,10 +18,14 @@
         
       </head>
   <body>
-    <input type="radio" id="force" name="display" value="force">
+    <strong><h3 style="color: blue">Airport Connections</h3></strong>
+    <div style="display: flex; float: left; margin: 10px;">
+    <input style="margin: 10px;" type="radio" id="force" name="display" value="force" checked>
         <label for="force">Force</label>
-        <input type="radio" id="map" name="display" value="map">
+        <input style="margin: 10px;" type="radio" id="map" name="display" value="map">
         <label for="map">Map</label>
+        <div class="tooltip"></div></div>
+
      <div class="chart"></div>
    
   </body>

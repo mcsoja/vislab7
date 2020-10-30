@@ -25,6 +25,8 @@ let svg = d3.select(".chart").append("svg")
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
     
 const features = topojson.feature(data[1], data[1].objects.countries).features;
 const projection = d3.geoMercator()
@@ -45,6 +47,8 @@ svg.append("path")
       .attr("stroke", "white")
       .attr("stroke-linejoin", "round")
       .attr("d", path);
+
+
 var passengersList = []
       for (i = 0; i < data[0].nodes.length; i++) {
         passengersList.push(data[0].nodes[i].passengers);
@@ -128,15 +132,38 @@ force.on("tick", () => {
 nodes.append("title")
     .text(d=>d.name);
     
+    d3.selectAll("input[name=type]").on("change", event=>{
+      visType = event.target.value;// selected button
+      console.log("SWITHC")
+      switchLayout();
+    });
 
+    function switchLayout() {
+      console.log("SWITHC")
+      if (visType === "map") {
+        // stop the simulation
+        force.stop()
+        // set the positions of links and nodes based on geo-coordinates
+        let nodes = data[0].nodes
+        let link = data[0].links
+        svg.selectAll('pathh')
+        .attr('opacity', 1)
 
+          node.attr("cx", function(d) {
+            return projection([d.longitude, d.latitude])[0];
+     
 
-        
+          })
+      } else { // force layout
+
+        force.alpha(0.5).restart();
+        // set the map opacity to 0
+        svg.selectAll("path")
+              .attr("opacity", 0);
+          // set the map opacity to 0
+      }
+    }
     
-      // for (var i = 0, n = nodes.length, node, k = alpha * 0.1; i < n; ++i) {
-      //     node = nodes[i];
-      //     node.vx -= node.x * k;
-      //     node.vy -= node.y * k;
-      //   }
+
 
   })
